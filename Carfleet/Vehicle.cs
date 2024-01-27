@@ -14,7 +14,12 @@ namespace Carfleet
             _chassisNumber = chassisNumber;
         }
 
+        public void StartEngine(){}
+
+        public void StopEngine() { }
+
         public string ChassisNumber { get => _chassisNumber; }
+        public float FuelLevel { get => 20f; }
         #endregion public methods
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Carfleet
 {
@@ -12,20 +11,44 @@ namespace Carfleet
         #endregion private attributes
 
         #region public methods
-        public Vehicle GetVehicleByChassisNumber(string chassisNumber)
+        public void AssignVehicleToDriver(Vehicle vehicleToAssign, Driver driverToAssign)
         {
-            foreach (Vehicle vehicle in _vehicles)
+            Driver driver = null;
+            Vehicle vehicle = null;
+            try
             {
-                if (vehicle.ChassisNumber == chassisNumber)
-                {
-                    return vehicle;
-                }
+                //STEP 1.1
+                driver = this.GetDriverByEmailaddress(driverToAssign.Emailaddress);
             }
-            throw new VehicleNotFoundException();
+            catch (DriverNotFoundException)
+            {
+                //STEP 1.1.1
+                this.HireDriver(driverToAssign);
+                driver = driverToAssign;
+            }
+
+            try
+            {
+                //STEP 1.2
+                vehicle = this.GetVehicleByChassisNumber(vehicleToAssign.ChassisNumber);
+            }
+            catch (VehicleNotFoundException)
+            {
+                //STEP 1.2.1
+                this.AddVehicleToFleet(vehicleToAssign);
+                vehicle = vehicleToAssign;
+            }
+
+            driver.TakeAVehicle(vehicle);
         }
 
-        //STEP 1.1
-        public Driver GetDriverByEmailaddress(string driverEmailaddress)
+        public List<Vehicle> Vehicles { get => _vehicles; set => _vehicles = value; }
+        public List<Driver> Drivers { get => _drivers; set => _drivers = value; }
+
+        #endregion public methods
+
+        #region private methods
+        private Driver GetDriverByEmailaddress(string driverEmailaddress)
         {
             foreach (Driver driver in _drivers)
             {
@@ -34,17 +57,35 @@ namespace Carfleet
                     return driver;
                 }
             }
+            //STEP 1.1 Exception
             throw new DriverNotFoundException();
         }
 
-        //STEP 1.2
-        public void AssignVehicleToDriver(string chassisNumber, string driverEmailaddress)
+        private Vehicle GetVehicleByChassisNumber(string chassisNumber)
         {
-            Driver driver = this.GetDriverByEmailaddress(driverEmailaddress);
-            Vehicle vehicle = this.GetVehicleByChassisNumber(chassisNumber);
-            driver.TakeAVehicle(vehicle);
+            foreach (Vehicle vehicle in _vehicles)
+            {
+                if (vehicle.ChassisNumber == chassisNumber)
+                {
+                    return vehicle;
+                }
+            }
+            //STEP 1.2.1 Exception
+            throw new VehicleNotFoundException();
         }
-        #endregion public methods
+
+        //STEP 1.1.1
+        private void HireDriver(Driver driverToHire)
+        {
+             _drivers.Add(driverToHire);
+        }
+
+        //STEP 1.2.1
+        private void AddVehicleToFleet(Vehicle vehicleToAdd)
+        {
+            _vehicles.Add(vehicleToAdd);
+        }
+        #endregion private methods
 
         #region nesteded class
         public class EnterpriseException : Exception { } //Not mandatory

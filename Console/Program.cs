@@ -7,7 +7,11 @@
             Enterprise _enterprise = new Enterprise();
             string _chassisNumber = "XFEFDREA";
             string _driverEmailaddress = "nic@gmail.com";
-            _enterprise.AssignVehicleToDriver(_chassisNumber, _driverEmailaddress);   
+            Vehicle _vehicle = new Vehicle(_chassisNumber);
+            Driver _driver = new Driver(_driverEmailaddress);
+
+            //STEP 1
+            _enterprise.AssignVehicleToDriver(_vehicle, _driver);   
         }
     }
 }

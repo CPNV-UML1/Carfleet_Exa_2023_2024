@@ -34,8 +34,12 @@ Exceptions
 
 ### Diagramme de séquence
 
-<<<<<<< HEAD
 ![SequenceDiagram](./Img/SequenceDiagramSpecs.JPG)
-=======
-![SequenceDiagram](./Img/SequenceDiagramSpecs.JPG)
->>>>>>> 49fae8c769edb0c35513c2cc9c558000b84aabc4
+
+## Solution
+
+Le diagramme de classe a été livrée [ici](https://github.com/CPNV-UML1/Carfleet_Exa_2023_2024/blob/main/Img/ClassDiagramSolution.JPG).
+
+Le code est sur la branche main. Une classe de test permet de valider la couvertue du code.
+
+![CodeCoverage](./Img/CodeCoverage.JPG)

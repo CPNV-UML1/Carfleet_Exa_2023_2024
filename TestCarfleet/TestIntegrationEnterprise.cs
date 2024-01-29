@@ -1,8 +1,5 @@
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.IO;
-using static Carfleet.Driver;
-using static Carfleet.Enterprise;
 
 namespace Carfleet
 {
@@ -47,5 +44,19 @@ namespace Carfleet
             //then
             Assert.AreEqual(_vehicle, _driver.Vehicle);
         }
+
+        #region utils
+        private List<Driver> GenerateDrivers(int amoutOfDrivers)
+        {
+            List<Driver> drivers = new List<Driver>();
+            return drivers;
+        }
+
+        private List<Vehicle> GenerateVehicles(int amoutOfVehicles)
+        {
+            List<Vehicle> vehicles = new List<Vehicle>();
+            return vehicles;
+        }
+        #endregion utils
     }
 }

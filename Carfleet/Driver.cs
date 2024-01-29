@@ -34,15 +34,19 @@ namespace Carfleet
             _vehicle.StartEngine();
             _vehicle.StopEngine();
             float fluelLevel = _vehicle.FuelLevel;
+
+            //STEP 1.3.1.4
             List<string> damages = this.DetectMinorDamages();
-            if (damages != null)
-            {
-                this.Report(damages);
-            }
         }
         private List<string> DetectMinorDamages()
         {
-            return new List<string>();
+            List<string> damages = new List<string>();
+            if (damages != null)
+            {
+                //STEP 1.3.1.4.1
+                this.Report(damages);
+            }
+            return damages;
         }
 
         private DamageReport Report(List<string> damages)

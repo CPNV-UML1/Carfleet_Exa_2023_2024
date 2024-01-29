@@ -38,7 +38,6 @@ namespace Carfleet
                 this.AddVehicleToFleet(vehicleToAssign);
                 vehicle = vehicleToAssign;
             }
-
             driver.TakeAVehicle(vehicle);
         }
 

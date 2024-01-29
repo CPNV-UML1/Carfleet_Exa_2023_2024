@@ -34,4 +34,4 @@ Exceptions
 
 ### Diagramme de séquence
 
-![SequenceDiagram](./img/SequenceDiagramSpecs.JPG)
+![SequenceDiagram](./IMG/SequenceDiagramSpecs.JPG)
